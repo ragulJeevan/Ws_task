@@ -1,0 +1,22 @@
+{
+  "userData": [
+    {
+      "user_name":"Ragul",
+      "user_id":1021,
+      "user_role":"Admin",
+      "user_skill":"Managing Ability"
+    },
+    {
+      "user_name":"Gandhi",
+      "user_id":1022,
+      "user_role":"Manager",
+      "user_skill":"Managing Ability"
+    },
+    {
+      "user_name":"Ram",
+      "user_id":1023,
+      "user_role":"Employee",
+      "user_skill":"Angular Developer"
+    }
+  ] 
+}
