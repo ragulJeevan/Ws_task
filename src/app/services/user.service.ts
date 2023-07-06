@@ -14,5 +14,8 @@ export class UserService {
   get() {
     return this.http.get<Users[]>('http://localhost:3000/userData');
   }
+  create(payload: Users) {
+    return this.http.post<Users>('http://localhost:3000/userData', payload);
+  }
 
 }

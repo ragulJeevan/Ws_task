@@ -8,6 +8,7 @@ import { UserDataComponent } from './user-data/user-data.component';
 import { UserActionComponent } from './user-action/user-action.component';
 import { userReducer } from './models/users.reducer';
 import { UsersEffect } from './models/users.effect';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,6 +19,8 @@ import { UsersEffect } from './models/users.effect';
   imports: [
     CommonModule,
     UserRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forFeature('myUsers', userReducer),
     EffectsModule.forFeature([UsersEffect]),
   ]
