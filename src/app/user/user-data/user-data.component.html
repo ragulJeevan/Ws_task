@@ -1,37 +1,40 @@
 <div class="container">
-    <div class="row my-4">
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <button class="btn btn-primary float-right" (click)="addUser()" >ADD USER</button>
-        </div>
+  <div class="row my-4">
+    <div class="col-md-3"></div>
+    <div class="col-md-3"></div>
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+      <button class="btn btn-primary float-right" (click)="addUser()">ADD USER</button>
     </div>
-    <div class="row mt-4">
-        <table class="tbale table-bordered">
-            <thead>
-                <tr>
-                    <th>S NO</th>
-                    <th>NAME</th>
-                    <th>USER ID</th>
-                    <th>USER ROLE</th>
-                    <th>SKILL</th>
-                    <th>ACTION</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let user of users$ | async,let i = index" >
-                    <td>{{i+1}}</td>
-                    <td>{{user.user_name}}</td>
-                    <td>{{user.user_id}}</td>
-                    <td>{{user.user_role}}</td>
-                    <td>{{user.user_skill}}</td>
-                    <td>
-                        <button [routerLink]="['/user/edit-user', user.id]" class="btn btn-primary btn-small"  >Edit</button>
-                        <button class="btn btn-dark" (click)="delete(user)" >Delerte</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  </div>
+  <div class="row mt-4">
+    <table class="tbale table-bordered">
+      <thead>
+        <tr>
+          <th>S NO</th>
+          <th>NAME</th>
+          <th>USER ID</th>
+          <th>USER ROLE</th>
+          <th>SKILL</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users$ | async,let i = index">
+          <td>{{i+1}}</td>
+          <td>{{user.user_name}}</td>
+          <td>
+            <img src="{{user.pic.source}}" style="height: 70px;width: 70px;">
+          </td>
+          <td>{{user.id}}</td>
+          <td>{{user.user_role}}</td>
+          <td>{{user.user_skill}}</td>
+          <td>
+            <button [routerLink]="['/user/edit-user', user.id]" class="btn btn-primary btn-small">Edit</button>
+            <button class="btn btn-dark" (click)="delete(user)">Delerte</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
