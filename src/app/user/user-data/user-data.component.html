@@ -27,7 +27,8 @@
                     <td>{{user.user_role}}</td>
                     <td>{{user.user_skill}}</td>
                     <td>
-                        <button class="btn btn-primary btn-small">Edit</button>
+                        <button [routerLink]="['/user/edit-user', user.id]" class="btn btn-primary btn-small"  >Edit</button>
+                        <button class="btn btn-dark" (click)="delete(user)" >Delerte</button>
                     </td>
                 </tr>
             </tbody>

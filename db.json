@@ -17,24 +17,6 @@
       "user_name": "Ram",
       "user_role": "Employee",
       "user_skill": "Angular Developer"
-    },
-    {
-      "id": 11,
-      "user_name": "test",
-      "user_role": "tee",
-      "user_skill": "teg"
-    },
-    {
-      "id": 55,
-      "user_name": "mkklmkl",
-      "user_role": "njnjnj",
-      "user_skill": "jnjnjkn"
-    },
-    {
-      "id": 88,
-      "user_name": "mklmkmkm",
-      "user_role": "yhiuhiuhiu",
-      "user_skill": "yhiuhojio"
     }
   ]
 }

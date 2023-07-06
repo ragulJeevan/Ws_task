@@ -9,12 +9,14 @@ import { UserActionComponent } from './user-action/user-action.component';
 import { userReducer } from './models/users.reducer';
 import { UsersEffect } from './models/users.effect';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 @NgModule({
   declarations: [
     UserDataComponent,
-    UserActionComponent
+    UserActionComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,
