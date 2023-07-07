@@ -11,6 +11,8 @@ import { UserModule } from './user/user.module';
 import { LoginModule } from './login/login.module';
 import { appReducer } from './user/models/app.reducer';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,10 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     StoreModule.forRoot({ appState: appReducer }),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+    }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

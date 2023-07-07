@@ -1,40 +1,83 @@
-<div class="container">
-  <div class="row my-4">
-    <div class="col-md-3"></div>
-    <div class="col-md-3"></div>
-    <div class="col-md-3"></div>
-    <div class="col-md-3">
-      <button class="btn btn-primary float-right" (click)="addUser()">ADD USER</button>
+<div class="card">
+  <div class="card-body" style="height:85vh">
+    <div class="row mx-2">
+      <div class="col-md-6">
+        <h2 class="bolded">User List</h2>
+      </div>
+      <div class="col-md-6">
+        <div class="row justify-content-end">
+          <button class="btn btn-primary w-auto" (click)="addUser()">ADD USER</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 mt-2">
+
+      <div class="scroll">
+        <table class="table table-light border " id="tags-table">
+          <thead>
+            <tr>
+              <th><span class="mx-3"> S.No </span> </th>
+              <th>Role Id</th>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Skill</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let user of users$ | async ;let i = index ">
+
+              <td> <span class="mx-3"> {{i+ 1}} </span> </td>
+              <td><span class="mx-3"> {{user.id}} </span></td>
+              <td>
+                <div class="circle-image text-center">
+                  <img src="{{ user.pic.source }}" alt="User Image">
+                </div>
+              </td>
+              <td>{{ user.user_name }}</td>
+              <td>{{ user.user_role }}</td>
+              <td>{{ user.user_skill }}</td>
+              <td>
+                <div class="">
+                  <button [routerLink]="['/user/edit-user', user.id]" class="btn btn-primary btn-sm mx-2">
+                    <i class='far fa-edit' style='font-size:20px'></i>
+                  </button>
+                  <button class="btn btn-dark btn-sm mx-2" (click)="confirmDelete(confirmModal,user)">
+                    <i class='fa fa-trash' style='font-size:20px'></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <!-- <tr *ngIf="users$?.length == 0">
+                          <td colspan="9" class="text-center">No User List Found</td>
+                      </tr> -->
+          </tbody>
+
+
+
+        </table>
+
+      </div>
     </div>
   </div>
-  <div class="row mt-4">
-    <table class="tbale table-bordered">
-      <thead>
-        <tr>
-          <th>S NO</th>
-          <th>NAME</th>
-          <th>USER ID</th>
-          <th>USER ROLE</th>
-          <th>SKILL</th>
-          <th>ACTION</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users$ | async,let i = index">
-          <td>{{i+1}}</td>
-          <td>{{user.user_name}}</td>
-          <td>
-            <img src="{{user.pic.source}}" style="height: 70px;width: 70px;">
-          </td>
-          <td>{{user.id}}</td>
-          <td>{{user.user_role}}</td>
-          <td>{{user.user_skill}}</td>
-          <td>
-            <button [routerLink]="['/user/edit-user', user.id]" class="btn btn-primary btn-small">Edit</button>
-            <button class="btn btn-dark" (click)="delete(user)">Delerte</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </div>
+
+<ng-template #confirmModal let-modal>
+  <div class="modal-header">
+      <h6 class="modal-title text-medium w-100">Delete User ?</h6>
+  </div>
+  <div class="modal-body mb-h">
+      <div class="row">
+          <div class="col-md-12">
+              <p> Are You Sure want to delete User ?</p>
+              <button  class="btn btn-primary " type="button"(click)="delete()">yes</button>
+              <button type="button" class="btn btn-secondary mx-2" (click)="closeModal()" >
+                  Cancel
+              </button>
+          </div>
+      </div>
+  </div>
+</ng-template>

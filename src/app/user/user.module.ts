@@ -10,6 +10,8 @@ import { userReducer } from './models/users.reducer';
 import { UsersEffect } from './models/users.effect';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { ToastrModule } from 'ngx-toastr';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -25,6 +27,10 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     ReactiveFormsModule,
     StoreModule.forFeature('myUsers', userReducer),
     EffectsModule.forFeature([UsersEffect]),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+    }),
+    NgbModule
   ]
 })
 export class UserModule { }

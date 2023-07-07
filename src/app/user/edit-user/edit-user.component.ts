@@ -16,7 +16,6 @@ import { selectUserById } from '../models/users.selector';
 })
 export class EditUserComponent implements OnInit {
 
-  @ViewChild('comment_images_input') comment_images_input: any;
   userForm: Users = {
     id:0,
     user_name:'',
@@ -43,6 +42,7 @@ export class EditUserComponent implements OnInit {
     fetchData$.subscribe((data) => {
       if (data) {
         this.userForm = { ...data };
+        this.comment_images = this.userForm.pic;
       }
       else{
         this.router.navigate(['/']);
@@ -80,7 +80,6 @@ export class EditUserComponent implements OnInit {
           this.comment_images = ({ 'file': file_data, 'source': url });
         }
       }
-      this.comment_images_input.nativeElement.value = '';
       // if (this.checkFileSize1(event)) {
       // }
     }

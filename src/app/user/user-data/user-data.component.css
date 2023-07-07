@@ -1,0 +1,46 @@
+  .circle-image {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* margin: 0 auto; */
+  }
+
+  .circle-image img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+  }
+
+  @media (max-width: 767px) {
+      .container-fluid {
+          padding-top: 20px;
+          padding-bottom: 20px;
+      }
+  }
+
+  .top {
+      top: -3px
+  }
+
+  .txt-b {
+      color: #383899;
+      font-size: 25px
+  }
+
+  .scroll {
+      height: 59vh !important;
+      overflow-y: auto;
+  }
+
+  #tags-table thead tr {
+      position: sticky;
+      top: 1px;
+      background: #6d6c6c !important;
+      z-index: 1;
+      border-width: 1px;
+      box-shadow: 0px 0px 0px 1px #c3c3c3;
+  }

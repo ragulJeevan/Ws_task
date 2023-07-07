@@ -13,13 +13,13 @@ export const userReducer = createReducer(
   // TO ADD USERS 
   on(saveNewUserAPISucess, (state, { newUser }) => {
     let newState = [...state];
-    newState.unshift(newUser);
+    newState.push(newUser);
     return newState;
   }),
   // TO UPDATE USER 
   on(updateUserAPISucess, (state, { updateUser }) => {
     let newState = state.filter((_) => _.id != updateUser.id);
-    newState.unshift(updateUser);
+    newState.push(updateUser);
     return newState;
   }),
   // TO DELETE USER 
