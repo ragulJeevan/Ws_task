@@ -1,11 +1,11 @@
 import { Component,OnInit,ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { setAPIStatus } from '../models/app.action';
-import { selectAppState } from '../models/app.selector';
-import { Appstate } from '../models/appstate';
-import { Users } from '../models/users';
-import { invokeSaveNewUserAPI } from '../models/users.action';
+import { setAPIStatus } from '../../models/app.action';
+import { selectAppState } from '../../models/app.selector';
+import { Appstate } from '../../models/appstate';
+import { Users } from '../../models/users';
+import { invokeSaveNewUserAPI } from '../../models/users.action';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
@@ -44,10 +44,10 @@ export class UserActionComponent implements OnInit {
       user_name: ['', Validators.required],
       first_name: ['', Validators.required],
       last_name: ['',],
-      role: ['', Validators.required],
+      user_role: ['', Validators.required],
       mobile: ['', Validators.pattern('[6-9]\\d{9}')],
       email: ['', [Validators.required]],
-      skill: ['', Validators.required],
+      user_skill: ['', Validators.required],
       location: ['', Validators.required],
       pic : [{},Validators.required]
   });
@@ -69,17 +69,17 @@ export class UserActionComponent implements OnInit {
    
     
   let users: Users = {
-    id: this.userForm.value.id,
-    user_name: this.userForm.value.user_name,
-    first_name: this.userForm.value.first_name,
-    last_name: this.userForm.value.last_name,
-    user_role: this.userForm.value.role,
-    mobile: this.userForm.value.mobile,
-    email: this.userForm.value.email,
-    department: this.userForm.value.department,
-    location: this.userForm.value.location,
-    user_skill: this.userForm.value.skill,
-    pic: this.userForm.value.pic
+    id: userData.id,
+    user_name: userData.user_name,
+    first_name: userData.first_name,
+    last_name: userData.last_name,
+    user_role: userData.user_role,
+    mobile: userData.mobile,
+    email: userData.email,
+    department: userData.department,
+    location: userData.location,
+    user_skill: userData.user_skill,
+    pic: userData.pic
   };
     this.store.dispatch(invokeSaveNewUserAPI({ newUser: users }));
     let apiStatus$ = this.appStore.pipe(select(selectAppState));

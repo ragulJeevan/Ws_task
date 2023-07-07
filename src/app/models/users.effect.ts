@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { EMPTY, map, mergeMap, switchMap, withLatestFrom } from 'rxjs';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../services/user.service';
 import { usersFetchAPISuccess, invokeUsersAPI,saveNewUserAPISucess,invokeSaveNewUserAPI, updateUserAPISucess,invokeUpdateUserAPI,deleteUserAPISuccess,invokeDeleteUserAPI } from './users.action';
 import { selectUsers } from './users.selector';
 import { Appstate } from "./appstate";

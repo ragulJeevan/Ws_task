@@ -29,7 +29,7 @@
           </thead>
 
           <tbody>
-            <tr *ngFor="let user of users$ | async ;let i = index ">
+            <tr *ngFor="let user of userList ;let i = index ">
 
               <td> <span class="mx-3"> {{i+ 1}} </span> </td>
               <td><span class="mx-3"> {{user.id}} </span></td>
@@ -53,9 +53,9 @@
                 </div>
               </td>
             </tr>
-            <!-- <tr *ngIf="users$?.length == 0">
-                          <td colspan="9" class="text-center">No User List Found</td>
-                      </tr> -->
+            <tr *ngIf="userList?.length == 0">
+              <td colspan="9" class="text-center">No User List Found</td>
+            </tr>
           </tbody>
 
 
@@ -69,17 +69,17 @@
 
 <ng-template #confirmModal let-modal>
   <div class="modal-header">
-      <h6 class="modal-title text-medium w-100">Delete User ?</h6>
+    <h6 class="modal-title text-medium w-100">Delete User ?</h6>
   </div>
   <div class="modal-body mb-h">
-      <div class="row">
-          <div class="col-md-12">
-              <p> Are You Sure want to delete User ?</p>
-              <button  class="btn btn-primary " type="button"(click)="delete()">yes</button>
-              <button type="button" class="btn btn-secondary mx-2" (click)="closeModal()" >
-                  Cancel
-              </button>
-          </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p> Are You Sure want to delete User ?</p>
+        <button class="btn btn-primary " type="button" (click)="delete()">yes</button>
+        <button type="button" class="btn btn-secondary mx-2" (click)="closeModal()">
+          Cancel
+        </button>
       </div>
+    </div>
   </div>
 </ng-template>

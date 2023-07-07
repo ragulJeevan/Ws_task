@@ -1,10 +1,10 @@
 import { Component,OnInit,ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { invokeDeleteUserAPI, invokeUsersAPI, } from '../models/users.action';
-import { selectUsers } from '../models/users.selector';
-import { Appstate } from 'src/app/user/models/appstate'
-import { setAPIStatus } from 'src/app/user/models/app.action';
-import { selectAppState } from 'src/app/user/models/app.selector';
+import { invokeDeleteUserAPI, invokeUsersAPI, } from '../../models/users.action';
+import { selectUsers } from '../../models/users.selector';
+import { Appstate } from 'src/app/models/appstate'
+import { setAPIStatus } from 'src/app/models/app.action';
+import { selectAppState } from 'src/app/models/app.selector';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -22,6 +22,7 @@ export class UserDataComponent implements OnInit {
   public users$! : Observable<any>;
   public appStore: any;
   public userData : any = {};
+  public userList : any =[];
 
   constructor(
     private store: Store,
@@ -33,11 +34,23 @@ export class UserDataComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.users$ = this.store.pipe(select(selectUsers));
+    this.getUser()
     this.store.dispatch(invokeUsersAPI());
   }
+  getUser(){
+    this.users$ = this.store.pipe(select(selectUsers));
+    this.users$.subscribe((users:any) => {
+      this.userList = users ? users.filter((x:any)=>x.user_role != 'Admin'):[];
+    },
+    ((err:any)=>{
+      console.log(err.error);
+      if(err.error.message){
+        this.toastr.error(err.error.message);
+      }
+    }));
+  }
   addUser(){
-    this.router.navigate(['/user/add-user'])
+    this.router.navigate(['/user/add-user']);
   }
 
   delete() {

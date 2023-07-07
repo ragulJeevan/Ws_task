@@ -74,12 +74,12 @@
 
            <div class="col-md-4">
             <label class="required">Skill</label>
-            <input type="text" formControlName="skill" class="form-control " placeholder="Enter User Skill" />
+            <input type="text" formControlName="user_skill" class="form-control " placeholder="Enter User Skill" />
           </div>
         <!-- DESGINATION  -->
           <div class="col-md-4">
             <label class="required">DESIGNATION</label>
-            <select formControlName="role" class="form-control required"  >
+            <select formControlName="user_role" class="form-control required"  >
               <option value="" [selected] disabled>Select Role</option>
               <option *ngFor="let role of roles" value={{role.role_name}}>{{role.role_name}}</option>
             </select>

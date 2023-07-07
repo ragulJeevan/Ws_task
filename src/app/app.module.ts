@@ -9,7 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpClientModule } from '@angular/common/http';
 import { UserModule } from './user/user.module';
 import { LoginModule } from './login/login.module';
-import { appReducer } from './user/models/app.reducer';
+import { appReducer } from './models/app.reducer';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

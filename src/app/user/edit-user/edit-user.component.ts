@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { switchMap } from 'rxjs';
-import { setAPIStatus } from 'src/app/user/models/app.action';
-import { selectAppState } from 'src/app/user/models/app.selector';
-import { Appstate } from 'src/app/user/models/appstate';
-import { Users } from '../models/users';
-import { invokeUpdateUserAPI } from '../models/users.action';
-import { selectUserById } from '../models/users.selector';
+import { setAPIStatus } from 'src/app/models/app.action';
+import { selectAppState } from 'src/app/models/app.selector';
+import { Appstate } from 'src/app/models/appstate';
+import { Users } from '../../models/users';
+import { invokeUpdateUserAPI } from '../../models/users.action';
+import { selectUserById } from '../../models/users.selector';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
@@ -106,12 +106,12 @@ export class EditUserComponent implements OnInit {
     user_name: userData.user_name,
     first_name: userData.first_name,
     last_name: userData.last_name,
-    user_role: userData.role,
+    user_role: userData.user_role,
     mobile: userData.mobile,
     email: userData.email,
     department: userData.department,
     location: userData.location,
-    user_skill: userData.skill,
+    user_skill: userData.user_skill,
     pic: userData.pic
   };
     this.store.dispatch(
