@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class UserGuard implements CanActivate {
   public userDetails: any;
   constructor(private router: Router) { }
   canActivate(
@@ -15,12 +15,10 @@ export class AuthGuard implements CanActivate {
     let isLoggedIn = localStorage.getItem('isLoggedIn');
     this.userDetails = JSON.parse(userData);
     let userId = this.userDetails ? this.userDetails.id : 0;
-    if (isLoggedIn !== 'true' && state.url == "/user-details") {
-      this.router.navigate(['/login']);
-    } else if (isLoggedIn == 'true' && state.url == "/login") {
-      this.router.navigate(['/user-details']);
-    } else if (isLoggedIn == 'true' && state.url == "/") {
-      this.router.navigate(['/user-details']);
+    if (this.userDetails && this.userDetails != null) {
+      if (this.userDetails.user_role == 'Employee' && state.url == "/user-details") {
+        this.router.navigate([`/edit-user/${userId}`]);
+      }
     }
     return true;
   }

@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Users } from "./users";
-import { usersFetchAPISuccess, saveNewUserAPISucess,updateUserAPISucess,deleteUserAPISuccess } from "./users.action";
+import { usersFetchAPISuccess, saveNewUserAPISucess, updateUserAPISucess, deleteUserAPISuccess } from "./users.action";
 
 export const initialState: ReadonlyArray<Users> = [];
 
@@ -24,7 +24,7 @@ export const userReducer = createReducer(
   }),
   // TO DELETE USER 
   on(deleteUserAPISuccess, (state, { id }) => {
-    let newState =state.filter((_) => _.id != id);
+    let newState = state.filter((_) => _.id != id);
     return newState;
   })
 );

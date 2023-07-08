@@ -8,10 +8,10 @@ const userMOdule = () => import('src/app/user/user-routing.module').then(x => x.
 
 const routes: Routes = [
   //LOGIN MODULE
-  {path:'login',loadChildren:loginMOdule},
+  { path: 'login', loadChildren: loginMOdule },
 
   // USER MODULE
-  {path:'user', loadChildren:userMOdule},
+  { path: 'user', loadChildren: userMOdule },
 ];
 
 @NgModule({

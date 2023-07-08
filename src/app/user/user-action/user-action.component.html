@@ -19,9 +19,9 @@
               <img [src]="comment_images.source || comment_images.file" class="user-image">
               <input style="display: none" id="pic" #attachmentsimage type="file" accept="image/*"
                 (change)="onIssueFileChange($event)" #fileInput multiple="false">
-             
+
             </div>
-            <button mat-icon-button class="upload-button required px-0"  (click)="attachmentsimage.click();">
+            <button mat-icon-button class="upload-button required px-0" (click)="attachmentsimage.click();">
               Upload Photo
             </button>
           </div>
@@ -31,7 +31,8 @@
           <!-- USER NAME  -->
           <div class="col-md-4">
             <label class="required">User Name</label>
-            <input type="text" formControlName="user_name" class="form-control required" placeholder="Enter User Name" />
+            <input type="text" formControlName="user_name" class="form-control required"
+              placeholder="Enter User Name" />
           </div>
 
           <!-- FIRST NAME  -->
@@ -50,36 +51,39 @@
         </div>
 
         <div class="row mb-2">
-            <!-- MOBILE NUMBER   -->
-            <div class="col-md-4">
-              <label class="required">User Id</label>
-              <input type="number" formControlName="id" class="form-control   no-spinner" minlength="10" maxlength="10" placeholder="Enter Manual User Id"  />
-            </div>
+          <!-- MOBILE NUMBER   -->
+          <div class="col-md-4">
+            <label class="required">User Id</label>
+            <input type="number" formControlName="id" class="form-control   no-spinner" minlength="10" maxlength="10"
+              placeholder="Enter Manual User Id" />
+          </div>
           <!-- MOBILE NUMBER   -->
           <div class="col-md-4">
             <label class="required">Mobile number</label>
-            <input type="number" formControlName="mobile" class="form-control  no-spinner" minlength="10" maxlength="10" placeholder="Enter Mobile Number"   />
+            <input type="number" formControlName="mobile" class="form-control  no-spinner" minlength="10" maxlength="10"
+              placeholder="Enter Mobile Number" />
           </div>
 
           <!-- EMAIL ID  -->
 
           <div class="col-md-4">
             <label class="required">Email</label>
-            <input type="email" formControlName="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" class="form-control required" placeholder="Enter Email Id" />
+            <input type="email" formControlName="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              class="form-control required" placeholder="Enter Email Id" />
           </div>
 
         </div>
         <div class="row mb-2">
-           <!-- SKILL   -->
+          <!-- SKILL   -->
 
-           <div class="col-md-4">
+          <div class="col-md-4">
             <label class="required">Skill</label>
             <input type="text" formControlName="user_skill" class="form-control " placeholder="Enter User Skill" />
           </div>
-        <!-- DESGINATION  -->
+          <!-- DESGINATION  -->
           <div class="col-md-4">
             <label class="required">DESIGNATION</label>
-            <select formControlName="user_role" class="form-control required"  >
+            <select formControlName="user_role" class="form-control required">
               <option value="" [selected] disabled>Select Role</option>
               <option *ngFor="let role of roles" value={{role.role_name}}>{{role.role_name}}</option>
             </select>
@@ -91,15 +95,17 @@
             <label class="required">Location</label>
             <select formControlName="location" class="form-control required">
               <option value="" selected disabled>Select Location</option>
-              <option *ngFor="let location of locations" [ngValue]="location.location_name">{{location.location_name}}</option>
+              <option *ngFor="let location of locations" [ngValue]="location.location_name">{{location.location_name}}
+              </option>
             </select>
           </div>
         </div>
       </form>
     </div>
     <div class="card-footer text-right">
-      <a class="btn btn-secondary mx-2 float-right" (click)="back()" >Back</a>
-      <button class="btn btn-primary mx-2 float-right" (click)="save()" >Save</button>
+      <!-- BUTTON FOR ACTIONS  -->
+      <a class="btn btn-secondary mx-2 float-right" (click)="back()">Back</a>
+      <button class="btn btn-primary mx-2 float-right" (click)="save()">Save</button>
     </div>
   </div>
 </div>

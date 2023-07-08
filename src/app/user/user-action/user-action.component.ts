@@ -17,14 +17,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserActionComponent implements OnInit {
 
-  public userForm!:FormGroup;
-  public comment_images: any=[];
-  
+  public userForm!:FormGroup; /* USERS FORM */
+  public comment_images: any=[];/* STORE UPLOADED IMAGE */
+  public userDetails :any={}; /* STORE USERDETAILS FROM LOCALSTORAGE */
+  // VARIABLE TO FOR PROVIDED ROLES 
   public roles : any = [
-    {"id":1,"role_name":"Manager"},
-    {"id":2,"role_name":"Team Lead"},
+    {"id":1,"role_name":"Admin"},
+    {"id":2,"role_name":"Manager"},
     {"id":3,"role_name":"Employee"}
   ];
+  // VARIABLE FOR PROVIDED LOCATION 
   public locations : any = [
     {"id":1,"location_name":"Coimbatore"},
     {"id":2,"location_name":"Chennai"},
@@ -39,6 +41,14 @@ export class UserActionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    let  userData : any = localStorage.getItem('userData');
+    this.userDetails = JSON.parse(userData);
+    if(this.userDetails && (this.userDetails.user_role == 'Manager' || this.userDetails.user_role == 'Employee')){
+      this.roles = [
+        {"id":3,"role_name":"Employee"}
+      ];
+    }
+    // INITIALIZE FORM 
     this.userForm = this.formBuilder.group({
       id: ['', Validators.required],
       user_name: ['', Validators.required],
@@ -52,9 +62,9 @@ export class UserActionComponent implements OnInit {
       pic : [{},Validators.required]
   });
   }
-
+// SAVE USER DATA 
   save() {
-    let userData = this.userForm.value;
+    
     if(this.comment_images.length == 0){
       this.toastr.error('Please Upload Image');
       return;
@@ -62,6 +72,7 @@ export class UserActionComponent implements OnInit {
     this.userForm.patchValue({
       pic:this.comment_images
     });
+    let userData = this.userForm.value;
     if(this.userForm.invalid){
       this.toastr.error('Please Fill All Mandatory Fields');
       return;
@@ -96,7 +107,7 @@ export class UserActionComponent implements OnInit {
   back(){
     this.router.navigate(['/user-details']);
   }
-
+// TO UPLOAD IMAGE 
   onIssueFileChange(event: any) {
     if(this.checkFileSize(event)){
       for (var i = 0; i <= event.target.files.length - 1; i++) {
@@ -114,7 +125,7 @@ export class UserActionComponent implements OnInit {
       this.toastr.error('Invalid file format');
     }
   }
-
+// IMAGE TYPE VALIDATION 
   checkFileSize(event: any) {
     let flag = true;
     for (let i = 0; i < event.target.files.length; i++) {

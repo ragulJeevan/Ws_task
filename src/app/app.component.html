@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"> <b>WS TASK</b> </a>
+    <button *ngIf="isLogged" class="btn btn-light btn-sm float-right" (click)="logout()">Logout</button>
   </div>
 </nav>
 <router-outlet></router-outlet>

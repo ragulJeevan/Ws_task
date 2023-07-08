@@ -1,4 +1,4 @@
-import { Component,OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { invokeDeleteUserAPI, invokeUsersAPI, } from '../../models/users.action';
 import { selectUsers } from '../../models/users.selector';
@@ -19,40 +19,50 @@ export class UserDataComponent implements OnInit {
 
   @ViewChild('comment_images_input') comment_images_input: any;
 
-  public users$! : Observable<any>;
-  public appStore: any;
-  public userData : any = {};
-  public userList : any =[];
+  public users$!: Observable<any>; /* OBSERVABLE TO GET USER LIST*/
+  public userData: any = {}; /* STORE USERDETAILS TO POPULATE IN MODAL */
+  public userList: any = []; /* STORE USERDETAILS FROM DB */
+  public userDetails: any = {}; /* STORE USERDATA FROM LOCALSTORAGE */
 
   constructor(
     private store: Store,
-    private router : Router,
-    private modalService : NgbModal,
+    private router: Router,
+    private modalService: NgbModal,
     private toastr: ToastrService,
-  ){
+    private appStore: Store<Appstate>,
+  ) {
   }
-  
+
 
   ngOnInit(): void {
+    let userData: any = localStorage.getItem('userData');
+    this.userDetails = JSON.parse(userData);
     this.getUser()
     this.store.dispatch(invokeUsersAPI());
   }
-  getUser(){
+  // TO GET ALL USER DATA 
+  getUser() {
     this.users$ = this.store.pipe(select(selectUsers));
-    this.users$.subscribe((users:any) => {
-      this.userList = users ? users.filter((x:any)=>x.user_role != 'Admin'):[];
-    },
-    ((err:any)=>{
-      console.log(err.error);
-      if(err.error.message){
-        this.toastr.error(err.error.message);
+    this.users$.subscribe((users: any) => {
+      if (this.userDetails.user_role == 'Admin') {
+        this.userList = users ? users : [];
+      } else {
+        this.userList = users ? users.filter((x: any) => x.user_role != 'Admin') : [];
       }
-    }));
+    },
+      ((err: any) => {
+        console.log(err.error);
+        if (err.error.message) {
+          this.toastr.error(err.error.message);
+        }
+      }));
   }
-  addUser(){
+  // NAVIGATE TO ADD USER SCREEN 
+  addUser() {
     this.router.navigate(['/user/add-user']);
   }
 
+  // TO DELETE SELECTED USER 
   delete() {
     this.store.dispatch(
       invokeDeleteUserAPI({
@@ -60,17 +70,22 @@ export class UserDataComponent implements OnInit {
       })
     );
     let apiStatus$ = this.appStore?.pipe(select(selectAppState));
-    apiStatus$?.subscribe((apState:any) => {
+    apiStatus$?.subscribe((apState: any) => {
       if (apState.apiStatus == 'success') {
         this.appStore.dispatch(
           setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
         );
         this.toastr.success('User Deleted Sucessfully');
       }
-    });
+    }, ((err: any) => {
+      if (err.error) {
+        this.toastr.error(err.error.message);
+      }
+    }));
     this.closeModal();
   }
-  confirmDelete(modal: any, data:any) {
+  // TO OPEN DELETE CONFIRMATION MODAL 
+  confirmDelete(modal: any, data: any) {
     this.userData = data;
     this.modalService.open(modal, {
       size: 'md',
@@ -79,7 +94,8 @@ export class UserDataComponent implements OnInit {
       keyboard: false
     });
   }
-  closeModal(){
+  // TO CLOSE DELETE CONFIRMATION MODAL 
+  closeModal() {
     this.modalService.dismissAll();
   }
 }

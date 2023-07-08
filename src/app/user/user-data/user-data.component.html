@@ -6,6 +6,7 @@
       </div>
       <div class="col-md-6">
         <div class="row justify-content-end">
+          <!-- ADD USER BUTTON  -->
           <button class="btn btn-primary w-auto" (click)="addUser()">ADD USER</button>
         </div>
       </div>
@@ -15,6 +16,7 @@
 
       <div class="scroll">
         <table class="table table-light border " id="tags-table">
+          <!-- TABLE HEADERS  -->
           <thead>
             <tr>
               <th><span class="mx-3"> S.No </span> </th>
@@ -27,7 +29,7 @@
               <th>Action</th>
             </tr>
           </thead>
-
+          <!-- BODY OF TABLE  -->
           <tbody>
             <tr *ngFor="let user of userList ;let i = index ">
 
@@ -47,12 +49,14 @@
                   <button [routerLink]="['/user/edit-user', user.id]" class="btn btn-primary btn-sm mx-2">
                     <i class='far fa-edit' style='font-size:20px'></i>
                   </button>
-                  <button class="btn btn-dark btn-sm mx-2" (click)="confirmDelete(confirmModal,user)">
+                  <button *ngIf="user.user_role != 'Admin' && user.user_role != userDetails.user_role"
+                    class="btn btn-dark btn-sm mx-2" (click)="confirmDelete(confirmModal,user)">
                     <i class='fa fa-trash' style='font-size:20px'></i>
                   </button>
                 </div>
               </td>
             </tr>
+            <!-- EMPTY DATA LIST  -->
             <tr *ngIf="userList?.length == 0">
               <td colspan="9" class="text-center">No User List Found</td>
             </tr>
@@ -67,6 +71,7 @@
   </div>
 </div>
 
+<!-- DELETE CONFIRMATION MODAL  -->
 <ng-template #confirmModal let-modal>
   <div class="modal-header">
     <h6 class="modal-title text-medium w-100">Delete User ?</h6>
@@ -75,7 +80,7 @@
     <div class="row">
       <div class="col-md-12">
         <p> Are You Sure want to delete User ?</p>
-        <button class="btn btn-primary " type="button" (click)="delete()">yes</button>
+        <button class="btn btn-danger " type="button" (click)="delete()">Delete</button>
         <button type="button" class="btn btn-secondary mx-2" (click)="closeModal()">
           Cancel
         </button>
