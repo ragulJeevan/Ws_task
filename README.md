@@ -2,9 +2,21 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
 
+## Packages Installed
+
+Bootstrpa,ng-modal,ngx-toastr,ng-bootstrap,ngrx-effects,ngrx-store 
+
+## DB USED FOR DEVLOPMENT
+
+**JSON server** is installed in this project. `npm install -g json-server` is used to install json server db.
+After installation in package.json you have to import the `"json-run": "json-server --watch db.json"` in script.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## Starting JSON db
+Run npm run json-run to run the json server db and will host on `http://localhost:3000/`.
 
 ## Code scaffolding
 
